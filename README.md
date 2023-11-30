@@ -21,7 +21,7 @@
 #### started on 11/2023
 
 ### Basic editing with nvim
-[!IMPORTANT]
+
 > `nvim` is the best editor for me rn, so below are basic editing commands
 ```vim
 :%s/\(word-to-search\)/replace-with/gca
