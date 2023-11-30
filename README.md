@@ -1,4 +1,5 @@
 # nonso-dev
+
 > lately, i have been unable to have a solid portfolio, due to serveral reasons.
 > that's why i have made the choice to not just build my portfolio page from my previous repo `portfolio-v3` but also to bui my own blog from scratch.
 
@@ -6,6 +7,7 @@
 > i need to get `really serious` deapite my current working env.
 
 ## libs in use
+
 - React
 - React router dom
 - R3F
@@ -17,3 +19,13 @@
 - emailjs ( planning on this )
 
 #### started on 11/2023
+
+### Basic editing with nvim
+![IMPORTANT]
+> `nvim` is the best editor for me rn, so below are basic editing commands
+```vim
+:%s/\(word-to-search\)/replace-with/gca
+```
+ - g (global search/replace)
+ - c (ask before doing)
+ - i (case insensitive)
