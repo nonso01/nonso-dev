@@ -1,10 +1,13 @@
+import Text from "./components/Text.jsx";
+
+import { rgbToHex } from "./components/util.js";
+
+// console.log(rgbToHex("rgb(104, 112, 125)"));
+
 export default function App() {
   return (
     <>
-      <h1>
-        {" "}
-        Hello <b>nonso-dev</b>{" "}
-      </h1>
+      <Text text={"Hello nonso-dev"} p={true} />
     </>
   );
 }
