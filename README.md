@@ -23,9 +23,11 @@
 ### Basic editing with nvim
 
 > `nvim` is the best editor for me rn, so below are basic editing commands
+
 ```vim
 :%s/\(word-to-search\)/replace-with/gca
 ```
- - g (global search/replace)
- - c (ask before doing)
- - i (case insensitive)
+
+- g (global search/replace)
+- c (ask before doing)
+- i (case insensitive)
