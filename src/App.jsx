@@ -1,7 +1,10 @@
-export default  function App() {
+export default function App() {
   return (
     <>
-    <h1> Hello <b>nonso-dev</b> </h1>
+      <h1>
+        {" "}
+        Hello <b>nonso-dev</b>{" "}
+      </h1>
     </>
-  )
+  );
 }

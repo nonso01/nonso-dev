@@ -1,17 +1,16 @@
-<script setup>
 // stroke: #212121
-import { onMounted, ref } from "vue";
 import anime from "animejs/lib/anime.es.js";
 
 const log = console.log;
 
-const completed = ref(false);
+export default function MyLogo() {
+  // const completed = ref(false);
 
-defineExpose({
+  /* defineExpose({
   completed,
 });
+*/
 
-onMounted(() => {
   const tl = anime.timeline({
     autoplay: true,
     direction: "alternate",
@@ -224,21 +223,19 @@ onMounted(() => {
       scaleX: 0.9,
       scaleY: 0.9,
     });
-});
-</script>
 
-<template>
-  <div id="mylogo">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="400"
-      height="400"
-      viewBox="0 0 48 45"
-    >
-      <path
-        d="m6.7 39.487-.07-33.415 4.936 3.287-.07 25.276z"
-        class="rect-coral"
-        style="
+  return (
+    <div id="mylogo">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="400"
+        height="400"
+        viewBox="0 0 48 45"
+      >
+        <path
+          d="m6.7 39.487-.07-33.415 4.936 3.287-.07 25.276z"
+          class="rect-coral"
+          style="
           fill: #ff8750;
           fill-opacity: 0;
           stroke: #ff8750;
@@ -246,105 +243,106 @@ onMounted(() => {
           stroke-width: 0.5;
           scale: 1 1;
         "
-      />
-      <path
-        d="m44.1 39.487.07-33.415-4.936 3.287.07 25.276z"
-        class="rect-yellow"
-        style="
+        />
+        <path
+          d="m44.1 39.487.07-33.415-4.936 3.287.07 25.276z"
+          class="rect-yellow"
+          style="
           fill: #ffbe40;
           stroke: #ffbe40;
           stroke-linecap: round;
           stroke-width: 0.5;
         "
-      />
-      <path
-        d="m11.841 9.4.082 5.561 13.162 3.552.162-5.14z"
-        class="rect-red"
-        style="
+        />
+        <path
+          d="m11.841 9.4.082 5.561 13.162 3.552.162-5.14z"
+          class="rect-red"
+          style="
           fill: #ff5a5a;
           stroke: #ff5a5a;
           stroke-linecap: round;
           stroke-width: 0.5;
         "
-      />
-      <path
-        d="m38.9 9.4-.081 5.546-13.163 3.542-.163-5.127z"
-        class="rect-green"
-        style="
+        />
+        <path
+          d="m38.9 9.4-.081 5.546-13.163 3.542-.163-5.127z"
+          class="rect-green"
+          style="
           fill: #28ff98;
           stroke: #28ff97;
           stroke-linecap: round;
           stroke-width: 0.5;
         "
-      />
-      <circle
-        cx="10"
-        cy="13.9"
-        r="1.9"
-        class="circle-yellow"
-        style="
+        />
+        <circle
+          cx="10"
+          cy="13.9"
+          r="1.9"
+          class="circle-yellow"
+          style="
           fill: #ffbe40;
           stroke: #ffbe40;
           stroke-linecap: round;
           stroke-width: 0.5;
         "
-      />
-      <circle
-        cx="35"
-        cy="30"
-        r="1.9"
-        class="circle-coral"
-        style="
+        />
+        <circle
+          cx="35"
+          cy="30"
+          r="1.9"
+          class="circle-coral"
+          style="
           fill: #ff8750;
           stroke: #ff8750;
           stroke-linecap: round;
           stroke-width: 0.5;
         "
-      />
-      <path
-        d="M6.542 12.3c-.551.126-1.102.252-1.37.48-.268.229-.252.56.026.895.278.335.84.688 2.076 1.381 1.236.693 3.158 1.733 4.292 2.386 1.134.654 1.48.921 1.691 1.262.212.34.293.777.002 1.155-.292.378-.953.71-1.292.875-.338.165-.354.165-.37.165"
-        class="lines line-1"
-        style="
+        />
+        <path
+          d="M6.542 12.3c-.551.126-1.102.252-1.37.48-.268.229-.252.56.026.895.278.335.84.688 2.076 1.381 1.236.693 3.158 1.733 4.292 2.386 1.134.654 1.48.921 1.691 1.262.212.34.293.777.002 1.155-.292.378-.953.71-1.292.875-.338.165-.354.165-.37.165"
+          class="lines line-1"
+          style="
           fill: none;
           stroke: #ffbe40;
           stroke-width: 0.4;
           stroke-linecap: round;
         "
-      />
-      <path
-        d="M6.542 21.5c-.315.157-.63.315-.842.449-.213.133-.323.244-.364.424a.894.894 0 0 0 .143.67c.15.205.417.347 1.512.67 1.094.322 3.016.826 4.142 1.134 1.126.307 1.457.417 1.724.559.268.141.473.315.607.44.133.127.196.205.206.347a.964.964 0 0 1-.194.587c-.152.209-.43.42-.784.634-.355.212-.795.433-1.236.653"
-        class="lines line-2"
-        style="
+        />
+        <path
+          d="M6.542 21.5c-.315.157-.63.315-.842.449-.213.133-.323.244-.364.424a.894.894 0 0 0 .143.67c.15.205.417.347 1.512.67 1.094.322 3.016.826 4.142 1.134 1.126.307 1.457.417 1.724.559.268.141.473.315.607.44.133.127.196.205.206.347a.964.964 0 0 1-.194.587c-.152.209-.43.42-.784.634-.355.212-.795.433-1.236.653"
+          class="lines line-2"
+          style="
           fill: none;
           stroke: #ffbe40;
           stroke-width: 0.4;
           stroke-linecap: round;
         "
-      />
-      <path
-        d="M6.542 29.3c-.551.126-1.102.252-1.37.48-.268.229-.252.56.026.895.278.335.84.688 2.076 1.381 1.236.693 3.158 1.733 4.292 2.386 1.134
+        />
+        <path
+          d="M6.542 29.3c-.551.126-1.102.252-1.37.48-.268.229-.252.56.026.895.278.335.84.688 2.076 1.381 1.236.693 3.158 1.733 4.292 2.386 1.134
       .654 1.48.921 1.691 1.262.212.34.293.777.002 1.155-.292.378-.953.71-1.292.875-.338.165-.354.165-.37.165"
-        class="lines line-3"
-        style="
+          class="lines line-3"
+          style="
           fill: none;
           stroke: #ffbe40;
           stroke-linecap: round;
           stroke-width: 0.4;
         "
-      />
-      <circle
-        cx="5"
-        cy="27.4"
-        r="1.9"
-        class="circle-green"
-        style="
+        />
+        <circle
+          cx="5"
+          cy="27.4"
+          r="1.9"
+          class="circle-green"
+          style="
           fill: #28ff98;
           fill-opacity: 0;
           stroke: #28ff98;
           stroke-linecap: round;
           stroke-width: 0.5;
         "
-      />
-    </svg>
-  </div>
-</template>
+        />
+      </svg>
+    </div>
+  );
+}
