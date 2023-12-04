@@ -1,20 +1,20 @@
-export default function Text({ s, p, c, data, text }) {
+export default function Text({ s, p, c, data, text, className = "" }) {
   // s = span, p = paragraph, c = code
-  if (s && text)
+  if (s)
     return (
-      <span className="txt txt-span" data-text={data}>
+      <span className={`${className} txt`} data-text={data}>
         {text}
       </span>
     );
-  else if (p && text)
+  else if (p)
     return (
-      <p className="txt txt-paragraph" data-text={data}>
+      <p className={`${className} txt`} data-text={data}>
         {text}
       </p>
     );
-  else if (c && text)
+  else if (c)
     return (
-      <code className="txt-code" data-text={data}>
+      <code className={`${className}`} data-text={data}>
         {text}
       </code>
     );

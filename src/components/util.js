@@ -50,3 +50,18 @@ export function rgbToHex(str /* string or [] */) {
 
   return hex;
 }
+
+export function on(element, ev) {
+  let node =
+    typeof element === "string" ? document.querySelectorAll(element) : element;
+  if (node instanceof NodeList) {
+    node.forEach((n) => {
+      for (let method in ev) {
+        n.addEventListener(method, ev[method].bind(n));
+      }
+    });
+  } else {
+    for (let method in ev) node.addEventListener(method, ev[method].bind(node));
+  }
+  return element && event ? true : false;
+}
