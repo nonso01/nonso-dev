@@ -1,4 +1,4 @@
-// import {} from ""
+// import Nav from "./Nav.jsx"
 import Text from "./Text.jsx";
 
 export default function About({}) {

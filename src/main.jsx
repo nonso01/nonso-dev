@@ -6,7 +6,7 @@ import App from "./App.jsx";
 import Error from "./components/Error.jsx";
 
 import About from "./components/About.jsx";
-import Blog from "./components/Blog.jsx";
+import Gallery from "./components/Gallery.jsx";
 import Contact from "./components/Contact.jsx";
 
 import "../dist/main.css";
@@ -25,8 +25,8 @@ const router = createBrowserRouter([
     element: <About />,
   },
   {
-    path: "blog",
-    element: <Blog />,
+    path: "gallery",
+    element: <Gallery />,
   },
   {
     path: "contact",

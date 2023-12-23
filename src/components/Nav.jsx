@@ -8,12 +8,13 @@ import {
   Wifi,
   WifiOff,
 } from "lucide-react";
+import anime from "animejs/lib/anime.es.js";
 
 // const log = console.log
 
 const routeNames = [
-  { id: 0, to: "/about", n: "About" },
-  { id: 1, to: "/blog", n: "Blog" },
+  { id: 0, to: "/", n: "Home" },
+  { id: 1, to: "/about", n: "About" },
   { id: 2, to: "/gallery", n: "Gallery" },
   { id: 3, to: "/contact", n: "Contact" },
 ];

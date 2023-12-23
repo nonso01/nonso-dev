@@ -1,12 +1,11 @@
-// import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
+// import anime from "animejs/lib/anime.es.js";
 
 import Text from "./components/Text.jsx";
 import Nav from "./components/Nav.jsx";
-import Button from "./components/Button.jsx";
-// import H3d from "./components/Header3d.jsx";
+// import Button from "./components/Button.jsx";
+import H3d from "./components/Header3d.jsx";
 import { on } from "./components/util.js";
-//
 
 const log = console.log;
 const minBatteryLevel = 16 / 100;
@@ -50,8 +49,6 @@ export default function App() {
         level: b.level,
       });
 
-      log(b);
-
       b.onchargingchange = (c) => {
         setBattery({
           ...battery,
@@ -61,7 +58,7 @@ export default function App() {
 
       b.onlevelchange = (l) => {
         setBattery({
-          ...battery,
+          batteryCharging: l.target.charging,
           level: l.target.level,
           batteryFull: l.target.level > minBatteryLevel,
         });
