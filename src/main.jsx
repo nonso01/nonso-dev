@@ -12,7 +12,7 @@ import Contact from "./components/Contact.jsx";
 import "../dist/main.css";
 
 import eruda from "eruda";
-eruda.init();
+// eruda.init();
 
 const router = createBrowserRouter([
   {

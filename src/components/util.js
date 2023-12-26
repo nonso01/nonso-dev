@@ -46,8 +46,6 @@ export function rgbToHex(str /* string or [] */) {
     hex += calc1 + "" + calc2;
   });
 
-  // log({param, arr, len , hex})
-
   return hex;
 }
 
@@ -64,4 +62,18 @@ export function on(element, ev) {
     for (let method in ev) node.addEventListener(method, ev[method].bind(node));
   }
   return element && event ? true : false;
+}
+
+export class Transition {
+  constructor(el = "html", enter = "enter", leave = "leave", duration = 0.2) {
+    this.el = document.querySelectorAll(el);
+    this.head = document.querySelector("head");
+    this.id = `style-${Math.round(Math.random() * 1000)}`;
+    this.enter = enter;
+    this.leave = leave;
+    this.duration = `${duration}s`;
+    this.result = "";
+  }
+
+  watch() {}
 }

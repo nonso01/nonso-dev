@@ -17,12 +17,21 @@ export default function App() {
     dark: false,
   });
 
-  let [mobileMedia, setMobileMedia] = useState(false);
+  let [isMobile, setIsMobile] = useState(false);
 
   let [battery, setBattery] = useState({
     batteryFull: true,
     batteryCharging: false,
     level: 0.0,
+  });
+
+  let [showBattery, setShowBattery] = useState(false);
+
+  let [showNetwork, setShowNetwork] = useState(false);
+
+  let [network, setNetwork] = useState({
+    effectiveType: "",
+    type: "",
   });
 
   let [isOnline, setIsOnline] = useState(true);
@@ -51,8 +60,9 @@ export default function App() {
 
       b.onchargingchange = (c) => {
         setBattery({
-          ...battery,
           batteryCharging: c.target.charging,
+          level: c.target.level,
+          batteryFull: c.target.level > minBatteryLevel,
         });
       };
 
@@ -65,6 +75,30 @@ export default function App() {
       };
     });
   }, []);
+
+  const userNetworkInfo = useEffect(() => {
+    const n = navigator;
+    setNetwork({
+      effectiveType: n.connection.effectiveType?.toUpperCase(),
+      type: n.connection.type,
+    });
+
+    n.connection.onchange = (con) => {
+      setNetwork({
+        effectiveType: n.connection.effectiveType?.toUpperCase(),
+        type: n.connection.type,
+      });
+    };
+  }, []);
+
+  const handleShowBattery = (e) => {
+    setShowBattery((b) => !b);
+  };
+
+  const handleShowNetwork = (e) => {
+    setShowNetwork((n) => !n);
+  };
+
   const windowEvents = on(window, {
     online() {
       setIsOnline((o) => (o = true));
@@ -82,6 +116,13 @@ export default function App() {
           isOnline={isOnline}
           batteryFull={battery.batteryFull}
           batteryCharging={battery.batteryCharging}
+          batteryLevel={battery.level * 100}
+          handleShowBattery={handleShowBattery}
+          handleShowNetwork={handleShowNetwork}
+          showBattery={showBattery}
+          showNetwork={showNetwork}
+          networkEffectiveType={network.effectiveType}
+          networkType={network.type}
         />
         <div className="intro-txt ">
           <h1 className="txt-fxlg glow-txt"> Hi, the name is Martin </h1>
