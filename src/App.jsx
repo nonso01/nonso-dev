@@ -25,7 +25,7 @@ export default function App() {
     level: 0.0,
   });
 
-  let [showBattery, setShowBattery] = useState(!false);
+  let [showBattery, setShowBattery] = useState(false);
 
   let [showNetwork, setShowNetwork] = useState(false);
 
