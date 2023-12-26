@@ -31,3 +31,33 @@
 - g (global search/replace)
 - c (ask before doing)
 - i (case insensitive)
+
+#### MutationObserver API
+
+> this API is actually new to me and fun working with.
+
+```js
+const test = useEffect(() => {
+  const t = document.querySelector(".nav");
+
+  const callback = (mutationList, ob) => {
+    mutationList.forEach((m) => {
+      if (m.type === "childList") {
+        if (m.addedNodes[0]) log("added Node");
+        else {
+          const r = m.removedNodes[0];
+          log("removed Node");
+          r.classList.add("leave");
+        }
+      }
+    });
+  };
+
+  const o = new MutationObserver(callback);
+  try {
+    o.observe(t, { childList: true, attributes: true, subtree: true });
+  } catch (e) {
+    console.warn(e);
+  }
+}, []);
+```

@@ -25,7 +25,7 @@ export default function App() {
     level: 0.0,
   });
 
-  let [showBattery, setShowBattery] = useState(false);
+  let [showBattery, setShowBattery] = useState(!false);
 
   let [showNetwork, setShowNetwork] = useState(false);
 
@@ -116,7 +116,7 @@ export default function App() {
           isOnline={isOnline}
           batteryFull={battery.batteryFull}
           batteryCharging={battery.batteryCharging}
-          batteryLevel={battery.level * 100}
+          batteryLevel={Math.round(battery.level * 100)}
           handleShowBattery={handleShowBattery}
           handleShowNetwork={handleShowNetwork}
           showBattery={showBattery}

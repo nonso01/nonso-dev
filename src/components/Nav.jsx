@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Settings,
   BatteryFull,
@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import anime from "animejs/lib/anime.es.js";
 // const log = console.log
+
+const log = console.log;
 
 const routeNames = [
   { id: 0, to: "/", n: "Home" },
@@ -30,6 +32,29 @@ export default function Nav(props) {
   const handleNavHover = (e) => {
     setDx((x) => (x = e.target.dataset.dx));
   };
+
+  // const test = useEffect(() => {
+  // const t = document.querySelector('.nav')
+
+  // const callback = (mutationList, ob) => {
+  // mutationList.forEach(m => {
+  // if (m.type === "childList") {
+  // if (m.addedNodes[0]) log("added Node")
+  // else {
+  // const r = m.removedNodes[0]
+  // log("removed Node")
+  // r.classList.add("leave")
+  // }
+  // }
+  // });
+  // }
+
+  // const o = new MutationObserver(callback)
+  // try {
+  // o.observe(t, {childList: true, attributes: true, subtree: true})
+  // } catch(e) {console.warn(e)}
+
+  // }, [])
 
   return (
     <nav className={props.isMobile ? "nav" : "nav rad fx fx-btw shadow"}>
@@ -67,7 +92,7 @@ export default function Nav(props) {
         ) : (
           <BatteryLow stroke="#ff5a5a" onClick={props.handleShowBattery} />
         )}
-        <div className="nav-click"></div>
+        {/* <div className="nav-click"></div> */}
       </div>
 
       {props.showBattery ? (
@@ -101,7 +126,7 @@ export function BatteryInfo(props) {
         Level:
         <i className={props.level > 16 ? "txt-lgreen" : "txt-danger"}>
           {" "}
-          {props.level}
+          {props.level}%
         </i>
       </span>
       <span className="txt-white">
