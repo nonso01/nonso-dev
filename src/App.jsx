@@ -5,6 +5,7 @@ import Text from "./components/Text.jsx";
 import Nav from "./components/Nav.jsx";
 // import Button from "./components/Button.jsx";
 import H3d from "./components/Header3d.jsx";
+// import Toggle from "./components/Toggle.jsx";
 import { on } from "./components/util.js";
 
 const log = console.log;
@@ -29,6 +30,8 @@ export default function App() {
 
   let [showNetwork, setShowNetwork] = useState(false);
 
+  let [showSetting, setShowSetting] = useState(false);
+
   let [network, setNetwork] = useState({
     effectiveType: "",
     type: "",
@@ -36,17 +39,11 @@ export default function App() {
 
   let [isOnline, setIsOnline] = useState(true);
 
-  const handleClickThemeLight = (e) => {
+  const handleTheme = (e) => {
+    log("working");
     setTheme({
-      light: true,
-      dark: false,
-    });
-  };
-
-  const handleClickThemeDark = (e) => {
-    setTheme({
-      dark: true,
-      light: false,
+      light: !theme.light,
+      dark: !theme.dark,
     });
   };
 
@@ -93,10 +90,20 @@ export default function App() {
 
   const handleShowBattery = (e) => {
     setShowBattery((b) => !b);
+    setShowNetwork(false);
+    setShowSetting(false);
   };
 
   const handleShowNetwork = (e) => {
     setShowNetwork((n) => !n);
+    setShowBattery(false);
+    setShowSetting(false);
+  };
+
+  const handleShowSetting = () => {
+    setShowSetting((s) => !s);
+    setShowBattery(false);
+    setShowNetwork(false);
   };
 
   const windowEvents = on(window, {
@@ -123,10 +130,16 @@ export default function App() {
           showNetwork={showNetwork}
           networkEffectiveType={network.effectiveType}
           networkType={network.type}
+          showSetting={showSetting}
+          handleShowSetting={handleShowSetting}
+          isLight={theme.light}
+          isDark={theme.dark}
+          handleTheme={handleTheme}
         />
         <div className="intro-txt ">
           <h1 className="txt-fxlg glow-txt"> Hi, the name is Martin </h1>
         </div>
+        <H3d />
       </header>
     </>
   );

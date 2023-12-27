@@ -10,7 +10,8 @@ import {
   X,
 } from "lucide-react";
 import anime from "animejs/lib/anime.es.js";
-// const log = console.log
+// import {Transition } from "./util.js"
+import Setting from "./Setting.jsx";
 
 const log = console.log;
 
@@ -32,29 +33,6 @@ export default function Nav(props) {
   const handleNavHover = (e) => {
     setDx((x) => (x = e.target.dataset.dx));
   };
-
-  // const test = useEffect(() => {
-  // const t = document.querySelector('.nav')
-
-  // const callback = (mutationList, ob) => {
-  // mutationList.forEach(m => {
-  // if (m.type === "childList") {
-  // if (m.addedNodes[0]) log("added Node")
-  // else {
-  // const r = m.removedNodes[0]
-  // log("removed Node")
-  // r.classList.add("leave")
-  // }
-  // }
-  // });
-  // }
-
-  // const o = new MutationObserver(callback)
-  // try {
-  // o.observe(t, {childList: true, attributes: true, subtree: true})
-  // } catch(e) {console.warn(e)}
-
-  // }, [])
 
   return (
     <nav className={props.isMobile ? "nav" : "nav rad fx fx-btw shadow"}>
@@ -79,7 +57,7 @@ export default function Nav(props) {
       <div
         className={props.isMobile ? "nav-info" : "nav-info fx fx-cn fx-even"}
       >
-        <Settings stroke="#68707d" />
+        <Settings stroke="#68707d" onClick={props.handleShowSetting} />
         {props.isOnline ? (
           <Wifi stroke="#28ff98" onClick={props.handleShowNetwork} />
         ) : (
@@ -115,13 +93,22 @@ export default function Nav(props) {
       ) : (
         <></>
       )}
+      {props.showSetting ? (
+        <Setting
+          isLight={props.isLight}
+          isDark={props.isDark}
+          handleTheme={props.handleTheme}
+        />
+      ) : (
+        <></>
+      )}
     </nav>
   );
 }
 
 export function BatteryInfo(props) {
   return (
-    <div className="battery-info enter pos-abs rad fx fx-col fx-even">
+    <div className="battery-info enter trans pos-abs rad fx fx-col fx-even">
       <span className="txt-white">
         Level:
         <i className={props.level > 16 ? "txt-lgreen" : "txt-danger"}>
@@ -153,12 +140,16 @@ export function BatteryInfo(props) {
 
 export function NetworkInfo(props) {
   return (
-    <div className="network-info enter pos-abs fx fx-col fx-even rad">
+    <div className="network-info enter trans pos-abs fx fx-col fx-even rad">
       <span className="txt-white">
         Effective Type: <i className="txt-lgreen"> {props.effectiveType}</i>
       </span>
       <span className="txt-white">
-        Type: <i className="txt-lgreen"> {props.type}</i>
+        Type:{" "}
+        <i className={props.online ? "txt-lgreen" : "txt-lenvmap"}>
+          {" "}
+          {props.type}
+        </i>
       </span>
       <span className="txt-white">
         Online:{" "}

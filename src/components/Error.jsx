@@ -31,5 +31,12 @@ export default function Error({}) {
         <Text c={true} className="txt-fsm txt-lenvmap" text={error.data} />
       </div>
     );
-  } else return <h1 className="title txt-danger"> Error!</h1>;
+  } else
+    return (
+      <div>
+        {" "}
+        <h1 className="txt-danger"> Error!</h1>{" "}
+        <p className="txt-lenvmap"> Look at your console </p>{" "}
+      </div>
+    );
 }

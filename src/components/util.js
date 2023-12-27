@@ -65,15 +65,25 @@ export function on(element, ev) {
 }
 
 export class Transition {
-  constructor(el = "html", enter = "enter", leave = "leave", duration = 0.2) {
-    this.el = document.querySelectorAll(el);
-    this.head = document.querySelector("head");
-    this.id = `style-${Math.round(Math.random() * 1000)}`;
-    this.enter = enter;
-    this.leave = leave;
-    this.duration = `${duration}s`;
-    this.result = "";
+  constructor(target, el) {
+    try {
+      this.el = typeof el === "string" ? document.querySelector(el) : el;
+      this.target =
+        typeof target === "string" ? document.querySelector(target) : target;
+    } catch (e) {}
   }
 
-  watch() {}
+  on() {
+    try {
+      this.el.onclick = () => {
+        if (document.startViewTransition) {
+          document.startViewTransition(() => {
+            this.target.remove();
+          });
+        } else console.warn("not supported");
+      };
+    } catch (e) {
+      console.warn(e.message);
+    }
+  }
 }

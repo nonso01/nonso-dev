@@ -3,11 +3,6 @@ import * as THREE from "three";
 import { Canvas, useFrame } from "@react-three/fiber";
 
 export default function H3d({}) {
-  // let [active, setActive] = useState(false)
-  // let meshRef = useRef(null)
-
-  // useFrame((state, delta) => (meshRef.current.rotation.x += delta))
-
   return (
     <Canvas className="app-header-h3d pos-abs-0 rad-2x">
       <B />
