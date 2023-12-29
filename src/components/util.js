@@ -64,6 +64,10 @@ export function on(element, ev) {
   return element && event ? true : false;
 }
 
+export function computedStyle(el) {
+  return window.getComputedStyle(el, null);
+}
+
 export class Transition {
   constructor(target, el) {
     try {

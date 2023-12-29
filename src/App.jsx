@@ -18,6 +18,11 @@ export default function App() {
     dark: false,
   });
 
+  let [scrolling, setScrolling] = useState({
+    x: 0.0,
+    y: 0.0,
+  });
+
   let [isMobile, setIsMobile] = useState(false);
 
   let [battery, setBattery] = useState({
@@ -106,15 +111,23 @@ export default function App() {
     setShowNetwork(false);
   };
 
-  const windowEvents = on(window, {
-    online() {
-      setIsOnline((o) => (o = true));
-    },
-    offline() {
-      setIsOnline((o) => (o = false));
-    },
-    scroll(e) {},
-  });
+  const windowEvents = useEffect(() => {
+    on(window, {
+      online() {
+        setIsOnline((o) => (o = true));
+      },
+      offline() {
+        setIsOnline((o) => (o = false));
+      },
+      scroll() {
+        // log(this.scrollY)
+        setScrolling({
+          y: this.scrollY,
+          x: this.scrollX,
+        });
+      },
+    });
+  }, []);
 
   return (
     <>
@@ -137,7 +150,7 @@ export default function App() {
           handleTheme={handleTheme}
         />
         <div className="intro-txt ">
-          <h1 className="txt-fxlg glow-txt"> Hi, the name is Martin </h1>
+          <h1 className="txt-fxlg glow-txt">A Dev Crafted Just For You.</h1>
         </div>
         <H3d />
       </header>

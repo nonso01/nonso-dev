@@ -10,7 +10,6 @@ import {
   X,
 } from "lucide-react";
 import anime from "animejs/lib/anime.es.js";
-// import {Transition } from "./util.js"
 import Setting from "./Setting.jsx";
 
 const log = console.log;
@@ -22,11 +21,6 @@ const routeNames = [
   { id: 3, to: "/contact", n: "Contact" },
 ];
 
-/* props include
- * isMobiile, isOnline, batteryFull, batteryCharging
- * showBattery, showNetwork, handleShowBattery, handleShowNetwork
- */
-
 export default function Nav(props) {
   let [dx, setDx] = useState(1);
 
@@ -35,7 +29,9 @@ export default function Nav(props) {
   };
 
   return (
-    <nav className={props.isMobile ? "nav" : "nav rad fx fx-btw shadow"}>
+    <nav
+      className={props.isMobile ? "nav" : "nav rad fx fx-btw shadow pos-rel"}
+    >
       <div
         className={
           props.isMobile ? "nav-routes" : "nav-routes pos-rel fx fx-cn fx-even "
@@ -130,7 +126,7 @@ export function BatteryInfo(props) {
       </span>
 
       <X
-        stroke="#ff5a5a"
+        stroke="#68707d"
         className="pos-abs rad-round"
         onClick={props.handleShowBattery}
       />
@@ -159,7 +155,7 @@ export function NetworkInfo(props) {
         </i>
       </span>
       <X
-        stroke="#ff5a5a"
+        stroke="#68707d"
         className="rad-round pos-abs"
         onClick={props.handleShowNetwork}
       />

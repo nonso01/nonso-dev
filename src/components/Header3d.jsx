@@ -1,30 +1,55 @@
 import { useState, useRef } from "react";
 import * as THREE from "three";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { Canvas, useFrame, useThree, extend } from "@react-three/fiber";
 
-export default function H3d({}) {
+extend({ OrbitControls });
+const log = console.log;
+
+export default function H3d(props) {
   return (
-    <Canvas className="app-header-h3d pos-abs-0 rad-2x">
-      <B />
+    <Canvas className="app-header-h3d pos-abs-0 rad-2x ">
+      <ambientLight color="white" intensity={1} />
+      <SmoothSphere />
+      <Control />
     </Canvas>
   );
 }
 
-function B() {
-  // B here, stands forr the 3d scene and whatever we have in it.
-  let [active, setActive] = useState(false);
-  let meshRef = useRef(null);
+function Control() { /* exp */
+  const controls = useRef();
+  const { camera, gl } = useThree();
+  useFrame(() => controls.current.update());
+  return (
+    <orbitControls
+      ref={controls}
+      args={[camera, gl.domElement]}
+      enableDamping
+      dampingFactor={0.5}
+      rotatespeed={0.35}
+    />
+  );
+}
 
-  useFrame((state, delta) => (meshRef.current.rotation.x += delta));
+function SmoothSphere(props) {
+  let [active, setActive] = useState(false);
+  let smoothSphereRef = useRef(null);
+
+  useFrame((state, delta) => {
+    smoothSphereRef.current.rotation.y += delta / 5;
+    // log(state)
+  });
 
   return (
-    <mesh
-      ref={meshRef}
-      scale={active ? 1.5 : 1}
-      onClick={(e) => setActive((a) => !a)}
-    >
-      <boxGeometry args={[2, 2, 2, 16, 16, 16]} />
-      <meshNormalMaterial wireframe={true} />
-    </mesh>
+    <>
+      <mesh
+        ref={smoothSphereRef}
+        scale={active ? 1.5 : 1}
+        onClick={(e) => setActive((a) => !a)}
+      >
+        <sphereGeometry args={[2, 64]} />
+        <meshStandardMaterial color="white" wireframe />
+      </mesh>
+    </>
   );
 }
