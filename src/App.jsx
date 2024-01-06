@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Nav from "./components/Nav.jsx";
 import H3d from "./components/Header3d.jsx";
 import T from "./components/T.jsx";
-import { on } from "./components/util.js";
+import { on, contains, addClass } from "./components/util.js";
 
 const log = console.log;
 const minBatteryLevel = 16 / 100;
@@ -49,6 +49,15 @@ export default function App() {
       dark: !theme.dark,
     });
   };
+
+  const mediaQueryEffect = useEffect(() => {
+    const mediaQueryList = window.matchMedia("(max-width: 575.98px)");
+    setIsMobile((m) => (m = mediaQueryList.matches));
+    mediaQueryList.onchange = (m) => {
+      setIsMobile((_m) => (_m = m.matches));
+      // log({matches: m.matches, width: window.innerWidth})
+    };
+  }, []);
 
   const userBatteryInfo = useEffect(() => {
     navigator.getBattery().then((b /* BatteryManager */) => {
@@ -117,6 +126,9 @@ export default function App() {
       offline() {
         setIsOnline((o) => (o = false));
       },
+      animationend(e) {
+        contains(e.target, "leave") ? addClass(e.target, "hide") : void 0;
+      },
       scroll() {
         // log(this.scrollY)
         setScrolling({
@@ -131,6 +143,7 @@ export default function App() {
     <>
       <header className="app-header rad-2x pos-rel">
         <Nav
+          isMobile={isMobile}
           isOnline={isOnline}
           batteryFull={battery.batteryFull}
           batteryCharging={battery.batteryCharging}
@@ -152,6 +165,7 @@ export default function App() {
         </div>
         {/*<H3d />*/}
       </header>
+      <header className="app-header"></header>
     </>
   );
 }

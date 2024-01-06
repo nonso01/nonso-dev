@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect, forwardRef } from "react";
+import { useState, useEffect, forwardRef, useRef } from "react";
 import {
   Settings,
   BatteryFull,
@@ -8,6 +8,12 @@ import {
   Wifi,
   WifiOff,
   X,
+  CircleUser,
+  PhoneCall,
+  Home,
+  GalleryHorizontalEnd,
+  Menu,
+  XSquare,
 } from "lucide-react";
 import anime from "animejs/lib/anime.es.js";
 import Setting from "./Setting.jsx";
@@ -20,6 +26,13 @@ const routeNames = [
   { id: 1, to: "/about", n: "About" },
   { id: 2, to: "/galler", n: "Gallery" },
   { id: 3, to: "/contact", n: "Contact" },
+];
+
+const routeIcons = [
+  { id: 0, to: "/", icon: <Home stroke="#68707d" /> },
+  { id: 1, to: "/about", icon: <CircleUser stroke="#68707d" /> },
+  { id: 2, to: "/galler", icon: <GalleryHorizontalEnd stroke="#68707d" /> },
+  { id: 3, to: "/contact", icon: <PhoneCall stroke="#68707d" /> },
 ];
 
 const NetworkInfo = forwardRef((props, ref) => {
@@ -91,36 +104,72 @@ const BatteryInfo = forwardRef((props, ref) => {
 
 export default function Nav(props) {
   let [dx, setDx] = useState(1);
+  let [showMenu, setShowMenu] = useState(false);
+
+  let [navRouteRef, navInfoRef] = [useRef(null, useRef(null))];
 
   const handleNavHover = (e) => {
     setDx((x) => (x = e.target.dataset.dx));
   };
+  const handleShowMenu = (e) => {
+    setShowMenu((r) => !r);
+  };
 
   return (
     <nav
-      className={props.isMobile ? "nav" : "nav rad fx fx-btw shadow pos-rel"}
+      className={
+        props.isMobile
+          ? "nav rad fx fx-btw fx-cn shadow"
+          : "nav rad fx fx-btw shadow pos-rel"
+      }
     >
       <div
         className={
-          props.isMobile ? "nav-routes" : "nav-routes pos-rel fx fx-cn fx-even "
+          props.isMobile
+            ? `nav-routes fx fx-even pos-fix rad shadow ${
+                showMenu ? "enter" : "leave"
+              }`
+            : "nav-routes pos-rel fx fx-cn fx-even "
         }
+        ref={navRouteRef}
       >
-        {routeNames.map((route) => (
-          <Link
-            to={route.to}
-            data-dx={route.id}
-            onPointerOver={handleNavHover}
-            key={route.id}
-            className="txt-fsm txt-bold"
-          >
-            {route.n}
-          </Link>
-        ))}
-        <span className="nav-click trans pos-abs" style={{ "--x": dx }}></span>
+        {!props.isMobile &&
+          routeNames.map((route) => (
+            <Link
+              to={route.to}
+              data-dx={route.id}
+              onPointerOver={handleNavHover}
+              key={route.id}
+              className={props.isMobile ? "txt-bold" : "txt-bold txt-fsm"}
+            >
+              {route.n}
+            </Link>
+          ))}
+        {props.isMobile &&
+          routeIcons.map((route) => (
+            <Link to={route.to} key={route.id}>
+              {route.icon}
+            </Link>
+          ))}
+        {!props.isMobile ? (
+          <span
+            className="nav-click trans pos-abs"
+            style={{ "--x": dx }}
+          ></span>
+        ) : (
+          void 0
+        )}
       </div>
 
       <div
-        className={props.isMobile ? "nav-info" : "nav-info fx fx-cn fx-even"}
+        className={
+          props.isMobile
+            ? `nav-info pos-fix rad shadow fx fx-col fx-cn fx-even ${
+                showMenu ? "enter" : "leave"
+              }`
+            : "nav-info fx fx-cn fx-even"
+        }
+        ref={navInfoRef}
       >
         <Settings stroke="#68707d" onClick={props.handleShowSetting} />
         {props.isOnline ? (
@@ -135,7 +184,6 @@ export default function Nav(props) {
         ) : (
           <BatteryLow stroke="#ff5a5a" onClick={props.handleShowBattery} />
         )}
-        {/* <div className="nav-click"></div> */}
       </div>
 
       {
@@ -167,6 +215,28 @@ export default function Nav(props) {
           />
         </T>
       }
+      {props.isMobile ? (
+        <>
+          <h2 className="txt-lgreen txt-flg"> . </h2>
+          {showMenu ? (
+            <X
+              stroke="#ff5a5a"
+              width="35"
+              height="35"
+              onClick={handleShowMenu}
+            />
+          ) : (
+            <Menu
+              stroke="#68707d"
+              height="35"
+              width="35"
+              onClick={handleShowMenu}
+            />
+          )}
+        </>
+      ) : (
+        void 0
+      )}
     </nav>
   );
 }
