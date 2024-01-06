@@ -13,7 +13,6 @@ import {
   Home,
   GalleryHorizontalEnd,
   Menu,
-  XSquare,
 } from "lucide-react";
 import anime from "animejs/lib/anime.es.js";
 import Setting from "./Setting.jsx";
@@ -127,7 +126,7 @@ export default function Nav(props) {
         className={
           props.isMobile
             ? `nav-routes fx fx-even pos-fix rad shadow ${
-                showMenu ? "enter" : "leave"
+                showMenu ? "enter" : "hide"
               }`
             : "nav-routes pos-rel fx fx-cn fx-even "
         }
@@ -165,7 +164,7 @@ export default function Nav(props) {
         className={
           props.isMobile
             ? `nav-info pos-fix rad shadow fx fx-col fx-cn fx-even ${
-                showMenu ? "enter" : "leave"
+                showMenu ? "enter" : "hide"
               }`
             : "nav-info fx fx-cn fx-even"
         }

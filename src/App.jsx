@@ -127,7 +127,7 @@ export default function App() {
         setIsOnline((o) => (o = false));
       },
       animationend(e) {
-        contains(e.target, "leave") ? addClass(e.target, "hide") : void 0;
+        // contains(e.target, "leave") ? addClass(e.target, "hide") : void 0;
       },
       scroll() {
         // log(this.scrollY)
@@ -165,7 +165,6 @@ export default function App() {
         </div>
         {/*<H3d />*/}
       </header>
-      <header className="app-header"></header>
     </>
   );
 }
