@@ -61,3 +61,16 @@ const test = useEffect(() => {
   }
 }, []);
 ```
+
+### Transition Component
+
+> Today being (6/1/24), i tried creating a transition component, similar to what i have been using in Vuejs.
+> well i made use of the following functons
+
+```jsx
+React.useRef;
+React.useFragment;
+React.forwardRef;
+```
+
+> and as well some css , for the animation, i will try making use of just native css transitions rather than animations.

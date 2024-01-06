@@ -3,8 +3,6 @@ import { useEffect } from "react";
 import { AlertTriangle } from "lucide-react";
 import anime from "animejs/lib/anime.es.js";
 
-import Text from "./Text.jsx";
-
 export default function Error({}) {
   const error = useRouteError();
   console.warn(error);
@@ -28,7 +26,7 @@ export default function Error({}) {
       <div className="error-layout fx fx-col fx-cn fx-even pos-abs pos-cn trans">
         <AlertTriangle stroke="#ff5a5a" />
         <h1 className="title txt-fmlg txt-danger"> {error.status}</h1>
-        <Text c={true} className="txt-fsm txt-lenvmap" text={error.data} />
+        <code className="txt-fsm txt-lenvmap"> {error.data} </code>
       </div>
     );
   } else

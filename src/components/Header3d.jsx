@@ -16,7 +16,8 @@ export default function H3d(props) {
   );
 }
 
-function Control() { /* exp */
+function Control() {
+  /* exp */
   const controls = useRef();
   const { camera, gl } = useThree();
   useFrame(() => controls.current.update());

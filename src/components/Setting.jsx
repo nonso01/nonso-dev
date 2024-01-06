@@ -1,9 +1,13 @@
-import {} from "lucide-react";
+// import {} from "lucide-react";
+import React from "react";
 import Toggle from "./Toggle.jsx";
 
-export default function Setting(props) {
+const Setting = React.forwardRef((props, ref) => {
   return (
-    <div className={props.isMobile ? "setting" : "setting pos-abs rad enter"}>
+    <div
+      className={props.isMobile ? "setting" : "setting pos-abs rad hide"}
+      ref={ref}
+    >
       <div className="fx fx-around">
         <span className={props.isLight ? "txt-lgreen" : "txt-lenvmap"}>
           {" "}
@@ -20,4 +24,6 @@ export default function Setting(props) {
       </div>
     </div>
   );
-}
+});
+
+export default Setting;

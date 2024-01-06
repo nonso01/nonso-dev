@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 // import anime from "animejs/lib/anime.es.js";
 
-import Text from "./components/Text.jsx";
 import Nav from "./components/Nav.jsx";
-// import Button from "./components/Button.jsx";
 import H3d from "./components/Header3d.jsx";
-// import Toggle from "./components/Toggle.jsx";
+import T from "./components/T.jsx";
 import { on } from "./components/util.js";
 
 const log = console.log;
@@ -152,7 +150,7 @@ export default function App() {
         <div className="intro-txt ">
           <h1 className="txt-fxlg glow-txt">A Dev Crafted Just For You.</h1>
         </div>
-        <H3d />
+        {/*<H3d />*/}
       </header>
     </>
   );
