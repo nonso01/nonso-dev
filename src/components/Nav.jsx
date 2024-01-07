@@ -135,7 +135,7 @@ export default function Nav(props) {
         translateX: [{ value: -40 }, { value: -10 }, { value: 0 }],
         scale: [{ value: 0.4 }, { value: 1 }],
       });
-
+if(props.isMobile) {
       t({
         target: ".nav-routes",
         visible: showMenu,
@@ -148,6 +148,7 @@ export default function Nav(props) {
         leave: "leave",
         enter: "enter",
       });
+}
     } catch (e) {
       log(e);
     }
