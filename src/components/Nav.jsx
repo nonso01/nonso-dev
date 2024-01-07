@@ -16,22 +16,21 @@ import {
 } from "lucide-react";
 import anime from "animejs/lib/anime.es.js";
 import Setting from "./Setting.jsx";
-import T from "./T.jsx";
+import T, {t} from "./T.jsx";
+import NonsoLogoPng from "../assets/logos/bitmap.png"
 
 const log = console.log;
 
 const routeNames = [
-  { id: 0, to: "/", n: "Home" },
-  { id: 1, to: "/about", n: "About" },
-  { id: 2, to: "/galler", n: "Gallery" },
-  { id: 3, to: "/contact", n: "Contact" },
-];
-
-const routeIcons = [
-  { id: 0, to: "/", icon: <Home stroke="#68707d" /> },
-  { id: 1, to: "/about", icon: <CircleUser stroke="#68707d" /> },
-  { id: 2, to: "/galler", icon: <GalleryHorizontalEnd stroke="#68707d" /> },
-  { id: 3, to: "/contact", icon: <PhoneCall stroke="#68707d" /> },
+  { id: 0, to: "/", n: "Home", icon: <Home stroke="#68707d" /> },
+  { id: 1, to: "/about", n: "About", icon: <CircleUser stroke="#68707d" /> },
+  {
+    id: 2,
+    to: "/galler",
+    n: "Gallery",
+    icon: <GalleryHorizontalEnd stroke="#68707d" />,
+  },
+  { id: 3, to: "/contact", n: "Contact", icon: <PhoneCall stroke="#68707d" /> },
 ];
 
 const NetworkInfo = forwardRef((props, ref) => {
@@ -114,6 +113,36 @@ export default function Nav(props) {
     setShowMenu((r) => !r);
   };
 
+  const navAnimationForMobile = useEffect(() => {
+    try {
+      const _a = anime({
+        targets: ".lucide-menu *, .lucide-x *",
+        duration: 1.5e3,
+        strokeDashoffset: [anime.setDashoffset, 0],
+      });
+
+      anime.set(".nav-routes .lucide *, .nav-info .lucide *", {scale: 0})
+
+      const _b = anime({
+        targets: ".nav-routes .lucide *",
+        delay: anime.stagger(100),
+        keyframes: [{ scale: 1.4 }, { scale: 1 }],
+      });
+
+      const _c = anime({
+        targets: ".nav-info .lucide *",
+        delay: anime.stagger(100),
+        translateX: [{ value: -40 }, { value: -10 }, { value: 0 }],
+        scale: [{value: .4}, {value: 1}]
+      });
+
+      t({target: ".nav-routes", visible: showMenu, leave: "leave", enter: "enter"})
+      t({target: ".nav-info", visible: showMenu, leave: "leave", enter: "enter"})
+    } catch (e) {
+      log(e);
+    }
+  }, [showMenu]);
+
   return (
     <nav
       className={
@@ -125,9 +154,7 @@ export default function Nav(props) {
       <div
         className={
           props.isMobile
-            ? `nav-routes fx fx-even pos-fix rad shadow ${
-                showMenu ? "enter" : "hide"
-              }`
+            ? `nav-routes fx fx-even pos-fix rad shadow hide`
             : "nav-routes pos-rel fx fx-cn fx-even "
         }
         ref={navRouteRef}
@@ -145,7 +172,7 @@ export default function Nav(props) {
             </Link>
           ))}
         {props.isMobile &&
-          routeIcons.map((route) => (
+          routeNames.map((route) => (
             <Link to={route.to} key={route.id}>
               {route.icon}
             </Link>
@@ -163,9 +190,7 @@ export default function Nav(props) {
       <div
         className={
           props.isMobile
-            ? `nav-info pos-fix rad shadow fx fx-col fx-cn fx-even ${
-                showMenu ? "enter" : "hide"
-              }`
+            ? `nav-info pos-fix rad shadow fx fx-col fx-cn fx-even hide`
             : "nav-info fx fx-cn fx-even"
         }
         ref={navInfoRef}
@@ -211,15 +236,17 @@ export default function Nav(props) {
             isLight={props.isLight}
             isDark={props.isDark}
             handleTheme={props.handleTheme}
+        handleShowSetting={props.handleShowSetting}
           />
         </T>
       }
       {props.isMobile ? (
         <>
-          <h2 className="txt-lgreen txt-flg"> . </h2>
+          <div className="nonso-logo"> <img src={NonsoLogoPng} alt="nonso01 logo" /> </div>
           {showMenu ? (
             <X
-              stroke="#ff5a5a"
+              stroke="#68707d"
+            className="pos-rel"
               width="35"
               height="35"
               onClick={handleShowMenu}
@@ -227,6 +254,7 @@ export default function Nav(props) {
           ) : (
             <Menu
               stroke="#68707d"
+            className="pos-rel"
               height="35"
               width="35"
               onClick={handleShowMenu}

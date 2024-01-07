@@ -1,4 +1,4 @@
-// import {} from "lucide-react";
+import { X } from "lucide-react";
 import React from "react";
 import Toggle from "./Toggle.jsx";
 
@@ -22,6 +22,8 @@ const Setting = React.forwardRef((props, ref) => {
         </span>
         <Toggle active={props.isDark} handleClick={props.handleTheme} />
       </div>
+
+    <X stroke="#68707d" className="pos-abs rad-round" onClick={props.handleShowSetting} />
     </div>
   );
 });

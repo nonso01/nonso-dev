@@ -163,7 +163,7 @@ export default function App() {
         <div className="intro-txt ">
           <h1 className="txt-fxlg glow-txt">A Dev Crafted Just For You.</h1>
         </div>
-        {/*<H3d />*/}
+        {<H3d />}
       </header>
     </>
   );
