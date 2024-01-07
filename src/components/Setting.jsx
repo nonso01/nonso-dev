@@ -23,7 +23,11 @@ const Setting = React.forwardRef((props, ref) => {
         <Toggle active={props.isDark} handleClick={props.handleTheme} />
       </div>
 
-    <X stroke="#68707d" className="pos-abs rad-round" onClick={props.handleShowSetting} />
+      <X
+        stroke="#68707d"
+        className="pos-abs rad-round"
+        onClick={props.handleShowSetting}
+      />
     </div>
   );
 });

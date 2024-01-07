@@ -16,8 +16,8 @@ import {
 } from "lucide-react";
 import anime from "animejs/lib/anime.es.js";
 import Setting from "./Setting.jsx";
-import T, {t} from "./T.jsx";
-import NonsoLogoPng from "../assets/logos/bitmap.png"
+import T, { t } from "./T.jsx";
+import NonsoLogoPng from "../assets/logos/bitmap.png";
 
 const log = console.log;
 
@@ -121,7 +121,7 @@ export default function Nav(props) {
         strokeDashoffset: [anime.setDashoffset, 0],
       });
 
-      anime.set(".nav-routes .lucide *, .nav-info .lucide *", {scale: 0})
+      anime.set(".nav-routes .lucide *, .nav-info .lucide *", { scale: 0 });
 
       const _b = anime({
         targets: ".nav-routes .lucide *",
@@ -133,11 +133,21 @@ export default function Nav(props) {
         targets: ".nav-info .lucide *",
         delay: anime.stagger(100),
         translateX: [{ value: -40 }, { value: -10 }, { value: 0 }],
-        scale: [{value: .4}, {value: 1}]
+        scale: [{ value: 0.4 }, { value: 1 }],
       });
 
-      t({target: ".nav-routes", visible: showMenu, leave: "leave", enter: "enter"})
-      t({target: ".nav-info", visible: showMenu, leave: "leave", enter: "enter"})
+      t({
+        target: ".nav-routes",
+        visible: showMenu,
+        leave: "leave",
+        enter: "enter",
+      });
+      t({
+        target: ".nav-info",
+        visible: showMenu,
+        leave: "leave",
+        enter: "enter",
+      });
     } catch (e) {
       log(e);
     }
@@ -236,17 +246,20 @@ export default function Nav(props) {
             isLight={props.isLight}
             isDark={props.isDark}
             handleTheme={props.handleTheme}
-        handleShowSetting={props.handleShowSetting}
+            handleShowSetting={props.handleShowSetting}
           />
         </T>
       }
       {props.isMobile ? (
         <>
-          <div className="nonso-logo"> <img src={NonsoLogoPng} alt="nonso01 logo" /> </div>
+          <div className="nonso-logo">
+            {" "}
+            <img src={NonsoLogoPng} alt="nonso01 logo" />{" "}
+          </div>
           {showMenu ? (
             <X
               stroke="#68707d"
-            className="pos-rel"
+              className="pos-rel"
               width="35"
               height="35"
               onClick={handleShowMenu}
@@ -254,7 +267,7 @@ export default function Nav(props) {
           ) : (
             <Menu
               stroke="#68707d"
-            className="pos-rel"
+              className="pos-rel"
               height="35"
               width="35"
               onClick={handleShowMenu}

@@ -16,25 +16,30 @@ export default function T({
 
   const transitionEffect = React.useEffect(() => {
     const target = C[0].ref.current;
-    t({target, visible, enter, leave})
+    t({ target, visible, enter, leave });
   }, [visible]);
 
   return <React.Fragment>{C}</React.Fragment>;
 }
 
-export function t(props = {visible: false, target: "", enter: "enter", leave: "leave"}) {
-  const target = typeof props.target === "string" ? document.querySelector(props.target) : props.target
+export function t(
+  props = { visible: false, target: "", enter: "enter", leave: "leave" },
+) {
+  const target =
+    typeof props.target === "string"
+      ? document.querySelector(props.target)
+      : props.target;
 
-  if(props.visible && target) {
-    addClass(target, props.enter)
-    removeClass(target, "hide", props.leave)
+  if (props.visible && target) {
+    addClass(target, props.enter);
+    removeClass(target, "hide", props.leave);
   } else {
-    removeClass(target, props.enter)
-    addClass(target, props.leave)
+    removeClass(target, props.enter);
+    addClass(target, props.leave);
   }
   on(target, {
     animationend() {
-      contains(this, props.leave) ? addClass(this, "hide") : void 0
-    }
-  })
+      contains(this, props.leave) ? addClass(this, "hide") : void 0;
+    },
+  });
 }
