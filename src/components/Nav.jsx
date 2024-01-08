@@ -17,6 +17,7 @@ import {
 import anime from "animejs/lib/anime.es.js";
 import Setting from "./Setting.jsx";
 import T, { t } from "./T.jsx";
+import LogoIcon from "./LogoIcon.jsx";
 import NonsoLogoPng from "../assets/logos/bitmap.png";
 
 const log = console.log;
@@ -135,20 +136,20 @@ export default function Nav(props) {
         translateX: [{ value: -40 }, { value: -10 }, { value: 0 }],
         scale: [{ value: 0.4 }, { value: 1 }],
       });
-if(props.isMobile) {
-      t({
-        target: ".nav-routes",
-        visible: showMenu,
-        leave: "leave",
-        enter: "enter",
-      });
-      t({
-        target: ".nav-info",
-        visible: showMenu,
-        leave: "leave",
-        enter: "enter",
-      });
-}
+      if (props.isMobile) {
+        t({
+          target: ".nav-routes",
+          visible: showMenu,
+          leave: "leave",
+          enter: "enter",
+        });
+        t({
+          target: ".nav-info",
+          visible: showMenu,
+          leave: "leave",
+          enter: "enter",
+        });
+      }
     } catch (e) {
       log(e);
     }
@@ -253,9 +254,9 @@ if(props.isMobile) {
       }
       {props.isMobile ? (
         <>
-          <div className="nonso-logo">
-            {" "}
-            <img src={NonsoLogoPng} alt="nonso01 logo" />{" "}
+          <div className="nonso-logo pos-rel fx fx-cn">
+            {/*<img src={NonsoLogoPng} alt="nonso01 logo" /> */}
+            <LogoIcon />
           </div>
           {showMenu ? (
             <X
