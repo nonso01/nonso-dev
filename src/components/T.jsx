@@ -1,5 +1,6 @@
 import React from "react";
-import { on, contains, addClass, removeClass } from "./util.js";
+import On from "on-dom"
+import { contains, addClass, removeClass } from "./util.js";
 
 const log = console.log;
 
@@ -37,7 +38,7 @@ export function t(
     removeClass(target, props.enter);
     addClass(target, props.leave);
   }
-  on(target, {
+  new On(target, {
     animationend() {
       contains(this, props.leave) ? addClass(this, "hide") : void 0;
     },

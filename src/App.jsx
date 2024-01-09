@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import Nav from "./components/Nav.jsx";
 import H3d from "./components/Header3d.jsx";
 import T from "./components/T.jsx";
-import { on, contains, addClass } from "./components/util.js";
+import { contains, addClass } from "./components/util.js";
+import On from "on-dom"
 
 const log = console.log;
 const minBatteryLevel = 16 / 100;
@@ -119,7 +120,7 @@ export default function App() {
   };
 
   const windowEvents = useEffect(() => {
-    on(window, {
+    new On(window, {
       online() {
         setIsOnline((o) => (o = true));
       },
