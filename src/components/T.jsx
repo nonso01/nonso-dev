@@ -1,5 +1,5 @@
 import React from "react";
-import On from "on-dom"
+import On from "on-dom";
 import { contains, addClass, removeClass } from "./util.js";
 
 const log = console.log;

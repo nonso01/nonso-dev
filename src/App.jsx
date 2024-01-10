@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-// import anime from "animejs/lib/anime.es.js";
+import anime from "animejs/lib/anime.es.js";
 
 import Nav from "./components/Nav.jsx";
 import H3d from "./components/Header3d.jsx";
 import T from "./components/T.jsx";
 import { contains, addClass } from "./components/util.js";
-import On from "on-dom"
+import On from "on-dom";
 
 const log = console.log;
 const minBatteryLevel = 16 / 100;
@@ -119,6 +119,18 @@ export default function App() {
     setShowNetwork(false);
   };
 
+  const introTextAnimationEffect = useEffect(() => {
+    try {
+      const a = anime({
+        targets: ".intro-txt-animated svg text",
+        // direction: "alternate",
+        duration: 3e3,
+        rotate: 360,
+        loop: true,
+      });
+    } catch (err) {}
+  }, []);
+
   const windowEvents = useEffect(() => {
     new On(window, {
       online() {
@@ -126,9 +138,6 @@ export default function App() {
       },
       offline() {
         setIsOnline((o) => (o = false));
-      },
-      animationend(e) {
-        // contains(e.target, "leave") ? addClass(e.target, "hide") : void 0;
       },
       scroll() {
         // log(this.scrollY)
@@ -161,11 +170,44 @@ export default function App() {
           isDark={theme.dark}
           handleTheme={handleTheme}
         />
-        <div className="intro-txt ">
-          <h1 className="txt-fxlg glow-txt">A Dev Crafted Just For You.</h1>
+        <div className="intro-txt">
+          <h1 className="txt-fxlg glow-txt pos-rel">
+            A Dev Crafted Just For You.
+          </h1>
+        </div>
+        <div className="intro-txt-animated pos-abs">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="2.48389 3.07139 10.28 10.28"
+          >
+            <defs>
+              <path
+                d="M2.684 8.246A1 1 0 0012.567 8.18 1 1 0 002.684 8.246"
+                stroke="none"
+                strokeWidth=".2"
+                fill="none"
+                id="path"
+              />
+            </defs>
+            <text
+              style={{
+                fontSize: "2px",
+                strokeWidth: "0.15",
+                fill: "none",
+                stroke: "var(--app-main-low-envmap)",
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+              }}
+            >
+              <textPath href="#path">A Dev With Hands On Experience.</textPath>
+            </text>
+          </svg>
         </div>
         {<H3d />}
       </header>
+      <section>
+        <p>Loading....</p>
+      </section>
     </>
   );
 }

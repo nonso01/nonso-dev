@@ -4,7 +4,7 @@ import { useEffect } from "react";
 export default function LogoIcon(props) {
   useEffect(() => {
     anime({
-      targets: ".logo-icon path",
+      targets: ".logo-icon.a path",
       direction: "alternate",
       duration: 3e3,
       delay: 0.5e3,
@@ -17,7 +17,7 @@ export default function LogoIcon(props) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="-0.2 4.8 27.4 25.5"
       onClick={props.handleClick}
-      className="logo-icon"
+      className={props.animate ? "logo-icon a" : "logo-icon"}
     >
       <defs>
         <linearGradient id="grad1" gradientTransform="rotate(45)">
@@ -30,7 +30,7 @@ export default function LogoIcon(props) {
         d="M5 5 14 15 22 5 27 5 14 21 0 5 5 5"
         stroke="url(#grad1)"
         strokeWidth="1"
-        fill="none"
+        fill={props.fill ? props.fill : "none"}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -38,7 +38,7 @@ export default function LogoIcon(props) {
         d="m5 5M4.363 9.99 4.455 30 9.017 29.992 9.114 15.407M23.02 9.9 22.985 30 18.669 29.995 18.824 15.061"
         stroke="url(#grad1)"
         strokeWidth="1"
-        fill="none"
+        fill={props.fill ? props.fill : "none"}
         strokeLinecap="round"
         strokeLinejoin="round"
       />

@@ -4,10 +4,7 @@ import Toggle from "./Toggle.jsx";
 
 const Setting = React.forwardRef((props, ref) => {
   return (
-    <div
-      className={props.isMobile ? "setting" : "setting pos-abs rad hide"}
-      ref={ref}
-    >
+    <div className="setting pos-abs rad hide" ref={ref}>
       <div className="fx fx-around">
         <span className={props.isLight ? "txt-lgreen" : "txt-lenvmap"}>
           {" "}

@@ -255,8 +255,7 @@ export default function Nav(props) {
       {props.isMobile ? (
         <>
           <div className="nonso-logo pos-rel fx fx-cn">
-            {/*<img src={NonsoLogoPng} alt="nonso01 logo" /> */}
-            <LogoIcon />
+            <LogoIcon animate />
           </div>
           {showMenu ? (
             <X
