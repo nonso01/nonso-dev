@@ -5,11 +5,11 @@ export default function LogoIcon(props) {
   useEffect(() => {
     anime({
       targets: ".logo-icon.a path",
-      direction: "alternate",
+      // direction: "alternate",
       duration: 3e3,
       delay: 0.5e3,
       strokeDashoffset: [anime.setDashoffset, 0],
-      loop: true,
+      // loop: true,
     });
   }, []);
   return (
@@ -30,7 +30,7 @@ export default function LogoIcon(props) {
         d="M5 5 14 15 22 5 27 5 14 21 0 5 5 5"
         stroke="url(#grad1)"
         strokeWidth="1"
-        fill={props.fill ? props.fill : "none"}
+        fill={props.fill ? props.fill : "url(#grad1)"}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
