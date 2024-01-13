@@ -9,26 +9,13 @@ const log = console.log;
 export default function H3d(props) {
   return (
     <Canvas className="app-header-h3d pos-abs-0 rad-2x ">
-      <ambientLight color="white" intensity={1} />
+      <ambientLight color="white" intensity={3} />
+      <directionalLight color="red" intensity={2} args={[0, 3, 0]} />
+      <directionalLight color="green" intensity={2} args={[-3, 0, 0]} />
+      <axesHelper args={[10]} />
       <SmoothSphere />
       <Control />
     </Canvas>
-  );
-}
-
-function Control() {
-  /* exp */
-  const controls = useRef();
-  const { camera, gl } = useThree();
-  useFrame(() => controls.current.update());
-  return (
-    <orbitControls
-      ref={controls}
-      args={[camera, gl.domElement]}
-      enableDamping
-      dampingFactor={0.5}
-      rotatespeed={0.35}
-    />
   );
 }
 
@@ -49,8 +36,37 @@ function SmoothSphere(props) {
         onClick={(e) => setActive((a) => !a)}
       >
         <sphereGeometry args={[2, 64]} />
-        <meshStandardMaterial color="white" wireframe />
+        <meshPhongMaterial color="white" />
       </mesh>
     </>
+  );
+}
+
+function Disks(props) {
+  const shape = new THREE.Shape();
+  const radius = 40;
+
+  shape
+    .moveTo(0, radius)
+    .quadraticCurveTo(radius, radius, radius, 0)
+    .quadraticCurveTo(radius, -radius, 0, -radius)
+    .quadraticCurveTo(-radius, -radius, -radius, 0)
+    .quadraticCurveTo(-radius, radius, 0, radius);
+  return <></>;
+}
+
+function Control() {
+  /* exp */
+  const controls = useRef();
+  const { camera, gl } = useThree();
+  useFrame(() => controls.current.update());
+  return (
+    <orbitControls
+      ref={controls}
+      args={[camera, gl.domElement]}
+      enableDamping
+      dampingFactor={0.5}
+      rotatespeed={0.35}
+    />
   );
 }

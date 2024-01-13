@@ -192,9 +192,9 @@ export default function App() {
             <text
               style={{
                 fontSize: "2px",
+                fontFamily: "var(--font-text)",
                 strokeWidth: "0.15",
-                fill: "none",
-                stroke: "var(--app-main-low-envmap)",
+                fill: "var(--app-main-low-envmap)",
                 strokeLinecap: "round",
                 strokeLinejoin: "round",
               }}

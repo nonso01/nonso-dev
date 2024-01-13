@@ -23,15 +23,30 @@ import NonsoLogoPng from "../assets/logos/bitmap.png";
 const log = console.log;
 
 const routeNames = [
-  { id: 0, to: "/", n: "Home", icon: <Home stroke="#68707d" /> },
-  { id: 1, to: "/about", n: "About", icon: <CircleUser stroke="#68707d" /> },
+  {
+    id: 0,
+    to: "/",
+    n: "Home",
+    icon: <Home stroke="var(--app-main-low-envmap)" />,
+  },
+  {
+    id: 1,
+    to: "/about",
+    n: "About",
+    icon: <CircleUser stroke="var(--app-main-low-envmap)" />,
+  },
   {
     id: 2,
     to: "/galler",
     n: "Gallery",
-    icon: <GalleryHorizontalEnd stroke="#68707d" />,
+    icon: <GalleryHorizontalEnd stroke="var(--app-main-low-envmap)" />,
   },
-  { id: 3, to: "/contact", n: "Contact", icon: <PhoneCall stroke="#68707d" /> },
+  {
+    id: 3,
+    to: "/contact",
+    n: "Contact",
+    icon: <PhoneCall stroke="var(--app-main-low-envmap)" />,
+  },
 ];
 
 const NetworkInfo = forwardRef((props, ref) => {
@@ -58,7 +73,7 @@ const NetworkInfo = forwardRef((props, ref) => {
         </i>
       </span>
       <X
-        stroke="#68707d"
+        stroke="var(--app-main-low-envmap)"
         className="rad-round pos-abs"
         onClick={props.handleShowNetwork}
       />
@@ -93,7 +108,7 @@ const BatteryInfo = forwardRef((props, ref) => {
       </span>
 
       <X
-        stroke="#68707d"
+        stroke="var(--app-main-low-envmap)"
         className="pos-abs rad-round"
         onClick={props.handleShowBattery}
       />
@@ -207,7 +222,10 @@ export default function Nav(props) {
         }
         ref={navInfoRef}
       >
-        <Settings stroke="#68707d" onClick={props.handleShowSetting} />
+        <Settings
+          stroke="var(--app-main-low-envmap)"
+          onClick={props.handleShowSetting}
+        />
         {props.isOnline ? (
           <Wifi stroke="#28ff98" onClick={props.handleShowNetwork} />
         ) : (
@@ -255,11 +273,11 @@ export default function Nav(props) {
       {props.isMobile ? (
         <>
           <div className="nonso-logo pos-rel fx fx-cn">
-            <LogoIcon animate />
+            <LogoIcon animate fill />
           </div>
           {showMenu ? (
             <X
-              stroke="#68707d"
+              stroke="var(--app-main-low-envmap)"
               className="pos-rel"
               width="35"
               height="35"
@@ -267,7 +285,7 @@ export default function Nav(props) {
             />
           ) : (
             <Menu
-              stroke="#68707d"
+              stroke="var(--app-main-low-envmap)"
               className="pos-rel"
               height="35"
               width="35"
