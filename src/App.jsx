@@ -8,7 +8,7 @@ import { contains, addClass } from "./components/util.js";
 import On from "on-dom";
 
 const log = console.log;
-const minBatteryLevel = 16 / 100;
+const minBatteryLevel = 20 / 100;
 
 export default function App() {
   // log(navigator)
@@ -44,7 +44,7 @@ export default function App() {
   let [isOnline, setIsOnline] = useState(true);
 
   const handleTheme = (e) => {
-    log("working");
+    // log("working");
     setTheme({
       light: !theme.light,
       dark: !theme.dark,
@@ -193,8 +193,9 @@ export default function App() {
               style={{
                 fontSize: "2px",
                 fontFamily: "var(--font-text)",
+                fill: "none",
                 strokeWidth: "0.15",
-                fill: "var(--app-main-low-envmap)",
+                stroke: "var(--app-main-low-envmap)",
                 strokeLinecap: "round",
                 strokeLinejoin: "round",
               }}

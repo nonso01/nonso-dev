@@ -129,6 +129,10 @@ export default function Nav(props) {
     setShowMenu((r) => !r);
   };
 
+  const resetMenuOnceQueryChanges = useEffect(() => {
+    !props.isMobile ? setShowMenu((r) => (r = false)) : void 0;
+  }, [props.isMobile]);
+
   const navAnimationForMobile = useEffect(() => {
     try {
       const _a = anime({
