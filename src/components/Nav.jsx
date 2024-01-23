@@ -18,7 +18,7 @@ import anime from "animejs/lib/anime.es.js";
 import Setting from "./Setting.jsx";
 import T, { t } from "./T.jsx";
 import LogoIcon from "./LogoIcon.jsx";
-import NonsoLogoPng from "../assets/logos/bitmap.png";
+import { addClass, removeClass } from "./util.js";
 
 const log = console.log;
 
@@ -120,7 +120,7 @@ export default function Nav(props) {
   let [dx, setDx] = useState(1);
   let [showMenu, setShowMenu] = useState(false);
 
-  let [navRouteRef, navInfoRef] = [useRef(null, useRef(null))];
+  let navRef = useRef(null);
 
   const handleNavHover = (e) => {
     setDx((x) => (x = e.target.dataset.dx));
@@ -159,8 +159,8 @@ export default function Nav(props) {
         t({
           target: ".nav-routes",
           visible: showMenu,
-          leave: "leave",
-          enter: "enter",
+          leave: "leave-y",
+          enter: "enter-y",
         });
         t({
           target: ".nav-info",
@@ -174,13 +174,21 @@ export default function Nav(props) {
     }
   }, [showMenu]);
 
+  const positionNavOnScroll = useEffect(() => {
+    props.scrollY > 120.5
+      ? addClass(navRef.current, "observe")
+      : removeClass(navRef.current, "observe");
+  }, [props.scrollY]);
+
   return (
     <nav
       className={
         props.isMobile
-          ? "nav rad fx fx-btw fx-cn shadow"
+          ? "nav rad fx fx-btw fx-cn shadow pos-rel"
           : "nav rad fx fx-btw shadow pos-rel"
       }
+      style={{ "--s-y": `${props.scrollY}px` }}
+      ref={navRef}
     >
       <div
         className={
@@ -188,7 +196,6 @@ export default function Nav(props) {
             ? `nav-routes fx fx-even pos-fix rad shadow hide`
             : "nav-routes pos-rel fx fx-cn fx-even "
         }
-        ref={navRouteRef}
       >
         {!props.isMobile &&
           routeNames.map((route) => (
@@ -224,7 +231,6 @@ export default function Nav(props) {
             ? `nav-info pos-fix rad shadow fx fx-col fx-cn fx-even hide`
             : "nav-info fx fx-cn fx-even"
         }
-        ref={navInfoRef}
       >
         <Settings
           stroke="var(--app-main-low-envmap)"

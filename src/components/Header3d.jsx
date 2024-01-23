@@ -12,7 +12,6 @@ export default function H3d(props) {
       <ambientLight color="white" intensity={3} />
       <directionalLight color="red" intensity={2} args={[0, 3, 0]} />
       <directionalLight color="green" intensity={2} args={[-3, 0, 0]} />
-      <axesHelper args={[10]} />
       <SmoothSphere />
       <Control />
     </Canvas>

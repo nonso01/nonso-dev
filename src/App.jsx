@@ -8,7 +8,7 @@ import { contains, addClass } from "./components/util.js";
 import On from "on-dom";
 
 const log = console.log;
-const minBatteryLevel = 20 / 100;
+const minBatteryLevel = 16 / 100;
 
 export default function App() {
   // log(navigator)
@@ -56,7 +56,6 @@ export default function App() {
     setIsMobile((m) => (m = mediaQueryList.matches));
     mediaQueryList.onchange = (m) => {
       setIsMobile((_m) => (_m = m.matches));
-      // log({matches: m.matches, width: window.innerWidth})
     };
   }, []);
 
@@ -149,6 +148,11 @@ export default function App() {
     });
   }, []);
 
+  const randommTest = useEffect(() => {
+    // const s = window.localStorage
+    // log(s)
+  }, []);
+
   return (
     <>
       <header className="app-header rad-2x pos-rel">
@@ -169,6 +173,7 @@ export default function App() {
           isLight={theme.light}
           isDark={theme.dark}
           handleTheme={handleTheme}
+          scrollY={scrolling.y}
         />
         <div className="intro-txt">
           <h1 className="txt-fxlg glow-txt pos-rel">
@@ -206,9 +211,8 @@ export default function App() {
         </div>
         {<H3d />}
       </header>
-      <section>
-        <p>Loading....</p>
-      </section>
+
+      <main className="app-main"></main>
     </>
   );
 }
