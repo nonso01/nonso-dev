@@ -35,7 +35,7 @@ function SmoothSphere(props) {
         onClick={(e) => setActive((a) => !a)}
       >
         <sphereGeometry args={[2, 64]} />
-        <meshPhongMaterial color="white" />
+        <meshPhongMaterial color="white" wireframe />
       </mesh>
     </>
   );

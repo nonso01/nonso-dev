@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useState, useEffect, forwardRef, useRef } from "react";
 import {
   Settings,
@@ -199,21 +199,21 @@ export default function Nav(props) {
       >
         {!props.isMobile &&
           routeNames.map((route) => (
-            <Link
-              to={route.to}
+            <a
               data-dx={route.id}
+              href={route.to}
               onPointerOver={handleNavHover}
               key={route.id}
               className={props.isMobile ? "txt-bold" : "txt-bold txt-fsm"}
             >
               {route.n}
-            </Link>
+            </a>
           ))}
         {props.isMobile &&
           routeNames.map((route) => (
-            <Link to={route.to} key={route.id}>
+            <a href={route.to} key={route.id}>
               {route.icon}
-            </Link>
+            </a>
           ))}
         {!props.isMobile ? (
           <span
@@ -271,7 +271,7 @@ export default function Nav(props) {
         </T>
       }
       {
-        <T visible={props.showSetting}>
+        <T visible={props.showSetting} enter={"enter-y"} leave={"leave-y"}>
           <Setting
             isLight={props.isLight}
             isDark={props.isDark}
