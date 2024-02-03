@@ -1,4 +1,4 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useEffect, forwardRef, useRef } from "react";
 import {
   Settings,
@@ -199,21 +199,21 @@ export default function Nav(props) {
       >
         {!props.isMobile &&
           routeNames.map((route) => (
-            <a
+            <Link
               data-dx={route.id}
-              href={route.to}
+              to={route.to}
               onPointerOver={handleNavHover}
               key={route.id}
               className={props.isMobile ? "txt-bold" : "txt-bold txt-fsm"}
             >
               {route.n}
-            </a>
+            </Link>
           ))}
         {props.isMobile &&
           routeNames.map((route) => (
-            <a href={route.to} key={route.id}>
+            <Link to={route.to} key={route.id}>
               {route.icon}
-            </a>
+            </Link>
           ))}
         {!props.isMobile ? (
           <span
