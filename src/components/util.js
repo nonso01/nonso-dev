@@ -1,6 +1,3 @@
-// nonso-dev v3.0
-// a lib of useful functions.
-//
 export function computedStyle(el) {
   return window.getComputedStyle(el, null);
 }
@@ -18,6 +15,3 @@ export function removeClass(el, ...list) {
     if (contains(el, c)) el.classList.remove(c);
   });
 }
-// if (document.startViewTransition) {
-// document.startViewTransition(() => {
-// this.target.remove();

@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 import anime from "animejs/lib/anime.es.js";
 import Setting from "./Setting.jsx";
+import NetworkInfo from "./NetworkInfo.jsx";
+import BatteryInfo from "./BatteryInfo.jsx";
 import T, { t } from "./T.jsx";
 import LogoIcon from "./LogoIcon.jsx";
 import { addClass, removeClass } from "./util.js";
@@ -37,7 +39,7 @@ const routeNames = [
   },
   {
     id: 2,
-    to: "/galler",
+    to: "/galler", // intentional
     n: "Gallery",
     icon: <GalleryHorizontalEnd stroke="var(--app-main-low-envmap)" />,
   },
@@ -48,73 +50,6 @@ const routeNames = [
     icon: <PhoneCall stroke="var(--app-main-low-envmap)" />,
   },
 ];
-
-const NetworkInfo = forwardRef((props, ref) => {
-  return (
-    <div
-      className="network-info enter trans pos-abs fx fx-col fx-even rad hide"
-      ref={ref}
-    >
-      <span className="txt-white">
-        Effective Type: <i className="txt-lgreen"> {props.effectiveType}</i>
-      </span>
-      <span className="txt-white">
-        Type:{" "}
-        <i className={props.online ? "txt-lgreen" : "txt-lenvmap"}>
-          {" "}
-          {props.type}
-        </i>
-      </span>
-      <span className="txt-white">
-        Online:{" "}
-        <i className={props.online ? "txt-lgreen" : "txt-danger"}>
-          {" "}
-          {props.online ? "Yes" : "No"}
-        </i>
-      </span>
-      <X
-        stroke="var(--app-main-low-envmap)"
-        className="rad-round pos-abs"
-        onClick={props.handleShowNetwork}
-      />
-    </div>
-  );
-});
-
-const BatteryInfo = forwardRef((props, ref) => {
-  return (
-    <div
-      className="battery-info enter trans pos-abs rad fx fx-col fx-even hide"
-      ref={ref}
-    >
-      <span className="txt-white">
-        Level:
-        <i className={props.level > 16 ? "txt-lgreen" : "txt-danger"}>
-          {" "}
-          {props.level}%
-        </i>
-      </span>
-      <span className="txt-white">
-        Status:
-        <i className={props.batteryFull ? "txt-lgreen" : "txt-danger"}>
-          {props.batteryFull ? " Good" : " Please Charge"}
-        </i>
-      </span>
-      <span className="txt-white">
-        Charging:
-        <i className={props.charging ? "txt-lgreen" : "txt-lenvmap"}>
-          {props.charging ? " Yes" : " No"}
-        </i>
-      </span>
-
-      <X
-        stroke="var(--app-main-low-envmap)"
-        className="pos-abs rad-round"
-        onClick={props.handleShowBattery}
-      />
-    </div>
-  );
-});
 
 export default function Nav(props) {
   let [dx, setDx] = useState(1);
@@ -271,7 +206,7 @@ export default function Nav(props) {
         </T>
       }
       {
-        <T visible={props.showSetting} enter={"enter-y"} leave={"leave-y"}>
+        <T visible={props.showSetting}>
           <Setting
             isLight={props.isLight}
             isDark={props.isDark}

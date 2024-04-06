@@ -3,6 +3,7 @@ import anime from "animejs/lib/anime.es.js";
 
 import Nav from "./components/Nav.jsx";
 import H3d from "./components/Header3d.jsx";
+import { ADev } from "./components/SVGAssets.jsx";
 import T from "./components/T.jsx";
 import { contains, addClass } from "./components/util.js";
 import On from "on-dom";
@@ -121,8 +122,7 @@ export default function App() {
   const introTextAnimationEffect = useEffect(() => {
     try {
       const a = anime({
-        targets: ".intro-txt-animated svg text",
-        // direction: "alternate",
+        /* ADev.jsx */ targets: ".intro-txt-animated svg text",
         duration: 3e3,
         rotate: 360,
         loop: true,
@@ -148,11 +148,9 @@ export default function App() {
     });
   }, []);
 
-  const randommTest = useEffect(() => {
-    // const s = window.localStorage
-    // log(s)
-  }, []);
-
+  // const randomTest = useEffect(() => {
+  // }, []);
+  //
   return (
     <>
       <header className="app-header rad-2x pos-rel">
@@ -181,38 +179,18 @@ export default function App() {
           </h1>
         </div>
         <div className="intro-txt-animated pos-abs">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="2.48389 3.07139 10.28 10.28"
-          >
-            <defs>
-              <path
-                d="M2.684 8.246A1 1 0 0012.567 8.18 1 1 0 002.684 8.246"
-                stroke="none"
-                strokeWidth=".2"
-                fill="none"
-                id="path"
-              />
-            </defs>
-            <text
-              style={{
-                fontSize: "2px",
-                fontFamily: "var(--font-text)",
-                fill: "none",
-                strokeWidth: "0.15",
-                stroke: "var(--app-main-low-envmap)",
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-              }}
-            >
-              <textPath href="#path">A Dev With Hands On Experience.</textPath>
-            </text>
-          </svg>
+          <ADev />
         </div>
         {<H3d />}
       </header>
 
-      <main className="app-main"></main>
+      <main className="app-main">
+        <div>
+          <h2 className="txt-fmd"> A Dev Born With Creativity </h2>
+          <p>
+          </p>
+        </div>
+      </main>
     </>
   );
 }
