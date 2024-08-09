@@ -186,7 +186,7 @@ export default function App() {
 
       <main className="app-main">
         <div>
-          <h2 className="txt-fmd"> A Dev Born With Creativity </h2>
+          <h2 className="txt-fmd"> A Work in progress.... </h2>
           <p>
           </p>
         </div>
